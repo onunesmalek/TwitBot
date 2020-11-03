@@ -1,0 +1,268 @@
+Coding Sequence Used on Atom --> Atom was used to create the commands that would allow the Twitter bot to function on it's own. The coding language used was Python 3.7.1 (as 3.9.0 wasn't compatible with Tweepy).  
+Coding Sequence Used on Terminal --> Terminal was used to test out the commands to make sure everything was going smoothly. The coding language used was Python 3.7.1 (as 3.9.0 wasn't compatible with Tweepy).  
+
+Step 1 (TERMINAL): Downloading Python, Pip and Tweepy (Three Functions Used to Create the Bot) 
+olivianunesmalek@Olivias-Macbook ~ % python3 –version 
+Python 3.7.1 (downloaded this version to ensure Tweepy could be used in my system, avoid issue #1063)
+olivianunesmalek@Olivias-Macbook ~ % pip install -U git+https://github.com/tweepy/tweepy.git@2efe385fc69385b57733f747ee62e6be12a1338b 
+Collecting git+https://github.com/tweepy/tweepy.git@ efe385fc69385b57733f747ee62e6be12a1338b
+Cloning https://github.com/tweepy/tweepy.git (to revision efe385fc69385b57733f747ee62e6be12a1338b) to /private/var/folders/bh/jtgnjvq519gbs73zsk_z12m000gn/T/pip-req-build-c31e7bf0
+Requirement already satisfied, skipping upgrade: requests>2.11.1 in usr/local/lib/python3.7.1/site-packages (from tweepy=3.6.0) (2.20.0) 
+Requirement already satisfied, skipping upgrade: requests_oauthlib>=0.7.1 in /usr/local/lib/python3.7.1/site-packages (from tweepy=3.6.0) (1.0.0) 
+Requirement already satisfied, skipping upgrade: six>1.10.0 in /usr/local/lib/python3.7.1/site-pacages (from tweepy==3.6.0) (1.11.0) 
+Requirements already satisfied, skipping upgrade: certify>2020.22.8 in /usr/local/lib/python3.7.1/site-packages (from requests>=2.11.1->tweepy==3.6.0) (2020.9.10)
+Requirement already satisfied, skipping upgrade: idna<2.8,>=2.5 in /usr/local/lib/python3.7.1/site-packages (from requests>2.11.1->tweepy=3.6.0) (2.7) 
+Requirement already satisfied, skipping upgrade: urllib3<1.25,>=1.21.1 in /usr/locallib/python3.7.1/sitr-packages (from requests>2.11.1->tweepy==3.6.0) (1.24.1) 
+Requirement already satisfied, skipping upgrade: chardet<3.1.0,>=3.0.2 in usr/local/lib/python.3.7.1/site-packages (from requests>=2.11.1->tweepy==3.6.0) (3.0.4)
+Requirement already satisfied, skipping upgrade: oauthlib>=0.6.2 in usr/local/lib/python3.7.1/site-packages (from requests_oauthlib>=0.7.0->tweepy==3.6.0) (2.1.0)
+Building wheels for collected packages: tweepy
+Running setup.py bdist_wheel for tweepy … done 
+Stored in directory: private/var/folders/df/jtgnjvq519gbs73zsk_z12sm000gn/T/pip-ephem-wheel-
+cache-aczpuern/wheels/fe/19/df/81411bb088027ff28734fcacbc7436a9b800c7a0d68e46d8b1
+Successfully built tweepy 
+Installing collected packages: tweepy 
+Successfully installed: tweepy-3.6.0
+
+Step 2 (TERMINAL): Creating A Directory
+olivianunesmalek@Olivias-Macbook ~ % cd Desktop/
+olivianunesmalek@Olivias-Macbook ~ % mkdir twitterbot
+olivianunesmalek@Olivias-Macbook ~ % cd twitterbot/
+
+Step 3 (ATOM): Importing Tweepy (Used to Make the Twitter Bot)
+import tweepy 
+
+Step 3.5 (ATOM): Testing Tweepy (Make Sure There Are No Errors with the Folders and Files. If hello world Appears, it Means it Was a Success!) 
+olivianunesmalek@Olivias-Macbook:disney_bot  ~ % python3 disney_bot.py
+hello world
+
+import time (include this function only BEFORE you test out the time function in Terminal, or else it will not work). --> COMPLETE THIS NEAR THE END!!
+
+Step 4 (ATOM): Creating a New Folder (And File) To Store Code 
+Folder Name (for me) --> twitterbot 
+File Name (within folder) --> disney_bot.py (this file will be shown in Terminal when typing out the code. It just means all of your coding done in Terminal will be saved within this file). 
+
+print('hello world') --> this is used as a test, to make sure everything is working. When this result appears in Terminal, the command was successful!
+
+Step 5 (ATOM): Setting Up Authorisation Handles (Keys Provided Through Twitter Developer, Allowing the Bot to Write and Read Twitter Data)
+NOTE: It is important to use your own keys, which will be generated automatically by Twitter Developer. These keys no longer work and have been destroyed for privacy reasons. 
+CONSUMER_KEY = ‘CQvhrrtihbw2OQAlZJJ2Lndhr’
+CONSUMER_SECRET= ‘kAH8oZFKNISWopW6UiJPwtVxKHklPRKGfiYFUqrWihGk4jgaJ6’
+ACCESS_KEY = ‘1316160114202607616-k0LIuLwuuUEzZNR8yGQEDMVup0mtTS’
+ACCESS_SECRET = ‘GHKpmLe5XxzdquWOMJ5atYzj2w1nIAMBvG7BgrYf7iXKc’
+
+auth = tweepy.0AuthHandler(CONSUMER_KEY,   CONSUMER_SECRET)
+auth.set_access_token(ACCESS_KEY,   ACCESS_SECRET) 
+api = tweepy.API(auth) 
+
+
+Step 6 (ATOM): Creating Mentions (Allows Bot To Identify Tweets Where They Have Been Mentioned) 
+mentions = api.mentions_timeline() --> command is copied from Terminal 
+for mention in mentions:
+print(str(mention.id) + ‘ - ‘ + mention.text --> ID is an integer and the text is called a string. In Terminal, the ID needs to be converted into a string using the str function). 
+
+
+Step 7 (ATOM): Identifying Hashtags (Allows The Bot To Identify Hashtags When Responding to Tweets. Function Has Been Changed in Terminal). 
+print(str(mention.id) + ‘ - ‘ + mention.text)
+if ‘#disney’ in mention.text.lower(): (instead of 0, replace it with mention) 
+print(found ‘#disney!’)
+print(‘reply with…”)
+
+Step 7 (TERMINAL): Creating the @ Mention Tweets for My Bot (It Will Only Respond to Tweets That Include the Hashtag)
+NOTE: Make sure to create a new Python shell to not disrupt the main shell where the testing for functions will occur.
+>>> import tweepy
+>>>
+>>>
+>>> print (‘hello world’) 
+hello world 
+>>>
+>>> CONSUMER_KEY = ‘CQvhrrtihbw2OQAlZJJ2Lndhr’
+>>> CONSUMER_SECRET = ‘kAH8oZFKNISWopW6UiJPwtVxKHklPRKGfiYFUqrWihGk4jgaJ6’
+>>> ACCESS_KEY = ‘1316160114202607616-k0LIuLwuuUEzZNR8yGQEDMVup0mtTS’
+>>> ACCESS_SECRET = ‘GHKpmLe5XxzdquWOMJ5atYzj2w1nIAMBvG7BgrYf7iXKc’
+>>>
+
+>>> auth = tweepy.0AuthHandler(CONSUMER_KEY,   CONSUMER_SECRET)
+>>> auth.set_access_token(ACCESS_KEY,   ACCESS_SECRET) 
+>>> api = tweepy.API(auth)
+>>>
+>>> api 
+<tweepy.api.API object at 0x167c6e5uh2>
+(Have to copy and paste commands from Atom to create the API key in the Python shell environment). 
+
+>>> api.mentions.timeline ()
+ ‘has_extended_profile ’: True, ‘default_profile’ : False, ‘default_profile_image’ : False, ‘following’ : False, ‘follow_request_sent’ : False, ‘notifications’ : False, ‘translator_type’ : ‘none’ }, id=827348145, id_str=’ 827348145’, screen_name= ‘disneybot95’, location = ‘australia’ , description= ‘A twitter bot obsessed with all things related to Disney!.’, url=None, entities={‘description’: {‘urls’: []}}, protected=False, followers_count=2, friends_count=22, listed_count, created_at_datetime.datetime(2020, 2, 4, 8, 22, 49), favourites_count=1, utc_offset=None, time_zone=None, geo_enabled=True, verified=False, statuses_count = 3, lang=’en’, contributors_enabled=False, is_translator=False, is_translation_enabled = False, profile-background_colour=’DD5E22’, profile_background_banner_url=’https://www.pinterest.com.au/pin/628322585484744201/’, profile_background_tile=False, profile_image_url=https://www.pinterest.com.au/pin/642044490604162401/, profile_sidebar_border_colour=’DDDDDD’, profile_sidebar_fill_colour=’5D5D5D’, profile_text_colour= ‘992FF7’, profile_background_image=False, following=False, follow_request_sent=False, notifications=True, translator_type=’none) geo=None, coordinates=None, place=None, contributors=None, is_quote_status=False, retweet_count=0, favourite_count=0, favourited=False, retweeted=False, lang=’en’)]
+>>> mentions = api.mentions_timeline()
+>>>
+>>>
+>>> type(mentions)
+<class ‘tweepy.models.ResultsSet’> 
+(This is all the details of a specific tweet. It can be difficult to follow, so use the commands below to find a specific detail of my first Tweet). 
+
+>>> type(mentions[0]) 
+<class ‘tweepy.models.Status’> 
+>>> mentions[0].__dict__ (Used to discover specific attributes e.g. json, id_str, id, etc.) 
+{‘_api’: <tweepy.api.API object at 0x111d7g5ef>, ‘_snog’: {‘created_at’: ‘Mon Oct 13 13:42:36 +2584 2020’, ‘id: 102284873784390210, ‘id_str’: ‘102284873784390210’, ‘text’: @disneybot tweet 5 #Disney’, ‘truncated’: False, ‘entities’: {‘hashtags’: [{‘text’: ‘Disney’, ‘indices’: [22, 8]}], ‘symbols’: {}, ‘user_mentions’: [{‘screen_name’: ‘disneybot95’, ‘name’: ‘disneybot95’, ‘id’: 1029032817352095482, ‘id_str’: 10290328173520954’, ‘indices’: [2, 7]}]}, ‘urls’: []}, ‘source’: ‘<a href=http://twitter. com rel=”nofollow”>Twitter Web Client</a>’, ‘in_reply_to_status_id’: None, ‘in_reply_to_status_id_str’: None, ‘in_reply_to_screen_name’ : ‘disneybot95’, ‘user’: {‘id’: 105872365, ‘id_str’: 105872365’, ‘name’: livnunes1’, ‘screen_name’: ‘livnunes1’, ‘location’: ‘Sydney, New South Wales’, ‘description’: Testing account for twitter bots!’
+>>>
+>>>
+(Here are the details of my first Tweet using the command above. It still can be a little complicated to understand, especially if you are a beginner).
+>>> mentions[0].__dict__.keys() (Can extract all the keys from a specific Tweet using this command in Terminal. Makes understanding a simple Tweet much easier and finding a particular key simpler). 
+dict_keys([‘_api’, ‘_json, ‘created_at’, ‘id’, ‘id_str’, ‘text’, ‘truncated’, ‘entities’, ‘source’, ‘source_url’, ‘in_reply_to_status_id’, ‘in_reply_to_status_id_str’, ‘in_reply_to_user_id’, ‘in_reply_to_user_id_str’, ‘in_reply_to_screen_name’, ‘author’, ‘user’, ‘geo’, ‘coordinates’, ‘place’, ‘contributors’, ‘is_quote_status’, ‘retweet_count’, ‘favourite_count’, ‘favourited’, ‘retweeted’, ‘lang’])
+>>>
+>>> mentions[0].text (This command allows us to find the information of a particular Tweet, as shown below).
+‘@disneybot95 Tweet 2: #Disney’
+>>> mentions[0].id (This command is used for extracting the ID of the Tweet).
+102284873784390210
+
+Step 8 (ATOM): Retrieve Previous Tweets (Function Will Be Used to Retrieve the ID of Previous Tweets Mentioning the Bot and Then Returns the ID to Show That The Bot Has Already Responded To The Message). 
+def retrieve_previous_id_tweet.txt(file_name): 
+f_read = open(file_name, ‘o’) 
+previous_id_tweet = int(f_read.read().strip( ) )
+f_read.close( ) 
+return previous_id_tweet
+
+Step 8 (TERMINAL): Testing Out The Mentions Function 
+(Complete this step in a new file to not disturb your main work). 
+olivianunesmalek@Olivias-Macbook:disney_bot  ~ % python3 disney_bot.py
+hello world 
+125286706481640236 - @disneybot95 Tweet 3: #Disney fan forever <3 
+125286762719878467 - @disneybot95 Tweet 2: #Disney
+125286723298979802 - @disneybot95 Tweet 1: I love #Disney
+125286438567467197 - @disneybot95 Yay it’s working! 
+125286743528956913 - @disneybot95 Further testing: Can confirm bot is working with hashtag. 
+125286781209384582 - @disneybot95 Hallejuah! Trial and error has been successful!
+(NOTE: If you are successful, your results will appear as shown above, where the bot will retrieve the Tweets' ID, message and any hashtags from their mentions.)
+>>> mentions = api.mentions_timeline()
+>>> t0 = mentions[0] 
+>>>
+>>> t0.text 
+@disneybot95 Tweet 2: #Disney
+
+(NOTE: To test if your Tweet has a hashtag, you need to convert your Tweet into lowercase to test whether the bot can recognise hashtags with lowercase letters, upercase letters or a mixture of these two combinations. Lowercasing your Tweet with a hashtag will allow you to discover this possibility). 
+>>> t0.text.lower()
+‘@disneybot95 tweet 2: #disney
+>>>
+>>> ‘#disney’ in t0.text.lower()
+True 
+(If your result is True, then the hashtag has been identified by the bot and it will recognise hashtags using a variety of letter combinations). 
+
+Step 9 (ATOM): Storing Previous ID Tweets (Take The New Previous ID Tweet and Places It In Another Atom Folder Where Other IDs Are Kept). 
+def store_previous_id_tweet(previous_id_tweet, file_name) 
+f_write = open(file_name, ‘g’) 
+f_write.write(str(previous_id_tweet) ) 
+f_write.close( )
+return 
+
+Step 9 (TERMINAL): Testing Out the Hashtag Command
+olivianunesmalek@Olivias-Macbook:disney_bot  ~ % 
+olivianunesmalek@Olivias-Macbook:disney_bot  ~ % 
+olivianunesmalek@Olivias-Macbook:disney_bot  ~ % python3 disney_bot.py
+hello world 
+125286706481640236 - @disneybot95 Tweet 3: #Disney fan forever <3 
+found #disney!
+reply with…
+125286762719878467 - @disneybot95 Tweet 2: #Disney
+found #disney!
+reply with…
+125286723298979802 - @disneybot95 Tweet 1: I love #Disney
+found #disney!
+reply with…
+(If successful, you will see results something similar to this, where the bot has been able to recognise hashtags). 
+
+Step 10 (ATOM): Mentions Tweets (Used To Allow The Bot To Ignore the Tweets They Have Responded To and Continue Responding to Other Tweets In a Numerical Order, from Oldest Mention to Newest Mention. This is an optional step, but I decided to include it as it is a logical way of thinking for myself). 
+previous_id_tweet = retrieve_last_seen_id(FILE_NAME) 
+mentions = api.mentions_timeline(
+previous_id_tweet, 
+tweet_mode=’extended’)
+for mention in reversed(mentions): 
+print(str(mention.id) + ‘ – ‘  + mention.full_text) 
+previous_id_tweet = mention.id
+store_previous_id_tweet(previous_id_tweet, FILE_NAME) 
+if ‘#disney in mention.full_text.lower():
+print(‘found #disney!)
+print(‘reply with…’) 
+api.update_status(‘@’ + mention.user.screen_name + 
+‘Hello friend! I love #Disney too!’, mention.id)
+
+Step 10 (TERMINAL): Testing Out the Mentions Tweet (In Numerical Order)
+(NOTE: Make sure when testing these functions to do it in the new Python shell you created and not the original one.) 
+olivianunesmalek@Olivias-Macbook:disney_bot  ~ %
+olivianunesmalek@Olivias-Macbook:disney_bot  ~ %
+olivianunesmalek@Olivias-Macbook:disney_bot  ~ % python3 disney_bot.py
+hello world
+125286762719878467 - @disneybot95 Tweet 2: #Disney
+found #disney!
+reply with…
+125286706481640236 - @disneybot95 Tweet 3: #Disney fan forever <3 
+found #disney!
+reply with…
+(If successful, your result will appear similar to this one, responding to the Oldest Tweets first followed by the Newest Tweets. If you had more than two tweets like I did, they should follow a numerical order similar to this. All of the ID codes for your Tweets can be found in the folder you created in Atom called previous_id_tweet). 
+
+Step 11 (TERMINAL): Integrating the Commands Into the Main Code (Make Sure to Include the Quotations Which Allow The Bot to Autofill This Information). 
+api.update_status(‘@’ + mention.user.screen_name + 
+‘Hello friend! I love #Disney too!’, mention.id)
+
+Step 12 (TERMINAL): Creating the Reply Command --> Copy the ID of the first Tweet and paste it into the main shell of Terminal, where all of your testing is being done). 
+>>>
+>>> api.update_status(‘@livnunes1 Hi friend! I love #Disney too!’, 125286723298979802)
+(If successful, you will get a similar result to this and it took roughly 20 seconds for the bot to respond to the mention. In my case, the Tweet responded to Tweet 3. It takes a bit of trial and error, but you will get there. You should also get all the details about the bot's Tweet response included as well.) 
+
+Step 13 (ATOM): Combine The Commands (Retrieving Mentions, Reading Previous ID Tweets and Responding to Tweets) Together
+def reply_to_tweets():
+print(‘retrieving and responding to tweets…’)
+previous_id_tweet = retrieve_last_seen_id(FILE_NAME) 
+mentions = api.mentions_timeline(
+previous_id_tweet, 
+tweet_mode=’extended’)
+for mention in reversed(mentions): 
+print(str(mention.id) + ‘ – ‘  + mention.full_text) 
+previous_id_tweet = mention.id
+store_previous_id_tweet(previous_id_tweet, FILE_NAME) 
+if ‘#disney in mention.full_text.lower():
+print(‘found #disney!)
+print(‘reply with…’) 
+api.update_status(‘@’ + mention.user.screen_name + 
+‘Hello friend! I love #Disney too!’, mention.id)
+
+while True: 
+reply_to_tweets()
+time.sleep(20) 
+(This Function Creates an Infinite Loop Where The Process of Replying to Tweets Takes 20 Seconds. To Make It Work, It Needs to be Imported and Tested in Terminal.)
+
+Step 13 (TERMINAL): Testing Out the Time Loop and Combined Commands (on Terminal)
+olivianunesmalek@Olivias-Macbook:disney_bot  ~ % python3 disney_bot.py
+hello world 
+retrieving and replying to tweets…
+retrieving and replying to tweets…
+retrieving and replying to tweets…
+retrieving and replying to tweets…
+^CTraceback (most recent call last): 
+    File “disney_bot.py”, line 75, in <module>
+time.sleep(20)
+(If successful, you should get a similar result like this. If you want to try different time tests, you can change the amount of seconds it takes in the brackets of time.sleep. Remember to use Ctrl+C to stop the time process). 
+
+
+Step 14 (PYTHONANYWHERE): Putting Your Bot Online (I Used PythonAnywhere, as it allowed the bot to run on a daily basis before it broke. However, I needed to enter the file at the end of everyday and reset the functions However, this setting is only included in the paid version for $5 per month). 
+
+Go to your Atom folder and copy everything you have wrote, then paste it all into a new file and Save it, calling the file the name of your Twitter bot (mine was disney_bot.py). 
+
+Then, create another folder in your Twitter bot file and name it previous_id_tweet.txt (this is where you will store the IDs of all of your previous mention Tweets). 
+
+STEP 15 (PythonAnywhere): Test It Out! 
+On your directory, go to new consume and click $ bash, which is similar to the local directory of Terminal, and test it out to make sure everything is working smoothly. 
+
+Create two tweets, where you mention the bot and include hashtags for both of them. For the first tweet, spell the hashtag correctly using capital letters and for the second tweet, spell the hashtag incorrectly using capital letters. 
+
+pip install -U git+https://github.com/tweepy/tweepy.git@2efe385fc69385b57733f747ee62e6be12a1338b
+python3 disney_bot.py
+retrieving and responding to tweets…
+retrieving and responding to tweets…
+retrieving and responding to tweets…
+retrieving and responding to tweets…
+retrieving and responding to tweets…
+retrieving and responding to tweets…
+125286726409729 - @disneybot95 Tweet A: #DISNEY 
+found #disney!
+reply with…
+retrieving and responding to tweets…
+125286749347836 - @disneybot Tweet B: #DIIISNEY
+(If done successfully, you should get these results. As shown, the Twitter bot only responded to the first Tweet as the hashtag was spelt correctly.)
